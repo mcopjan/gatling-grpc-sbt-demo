@@ -3,3 +3,8 @@ target
 .settings
 .classpath
 .project
+.metals
+.bloop
+.bsp
+.vscode
+metals.sbt

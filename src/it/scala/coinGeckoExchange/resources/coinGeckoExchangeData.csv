@@ -1,0 +1,11 @@
+﻿name,id,image,trade_volume_24h_btc_normalized,score,score_rank,url,year_established,has_trading_incentive,country
+Binance,binance,https://assets.coingecko.com/markets/images/52/small/binance.jpg?1519353250,490663.7549,1,10,https://binance.com/,2017,FALSE,US
+Coinbase Pro,gdax,https://assets.coingecko.com/markets/images/23/small/fe290a14-ac8f-4c90-9aed-5e72abf271f0.jpeg?1527171545,490213123.8,2,9,https://www.coinbase.com,2016,TRUE,UK
+Kraken,kraken,https://assets.coingecko.com/markets/images/29/small/kraken.jpg?1584251255,33323.7549,3,8,https://r.kraken.com/Q1m9x,2015,FALSE,Belgium
+Bitfinex,bitfinex,https://assets.coingecko.com/markets/images/4/small/logo.png?1591775047,12123123123,4,7,"	https://www.bitfinex.com",2014,TRUE,France
+Binance US,binance_us,https://assets.coingecko.com/markets/images/469/small/Binance.png?1568875842,4323.7549,5,6,https://www.binance.us/en,2013,FALSE,Spain
+Gemini,gemini,https://assets.coingecko.com/markets/images/50/small/gemini.png?1605704107,23.7549,6,5,https://gemini.sjv.io/bZ49k,2012,TRUE, France
+Crypto.com,crypto_com,https://assets.coingecko.com/markets/images/589/small/crypto_com.jpg?1602499898,12312323.75,7,4,https://crypto.com/exchange,2011,FALSE,US
+Huobi Global,huobi,https://assets.coingecko.com/markets/images/25/small/1481589873352_.pic_hd.jpg?1589962155,33312323.75,8,3,https://www.huobi.com,2010,TRUE,Denmark
+Bitstamp,bitstamp,https://assets.coingecko.com/markets/images/9/small/bitstamp.jpg?1519627979,2222223.755,9,2,https://ftx.com/,2009,FALSE,Norway
+FTX,ftx_spot,https://assets.coingecko.com/markets/images/451/small/F.png?1609051590,32323.7549,10,1,https://ftx.com/,2008,TRUE,Sweden
