@@ -55,7 +55,8 @@ class BasicItSimulation extends Simulation {
     
 
   setUp(scn.inject(
-    rampUsersPerSec (1) to (100) during(1 minute))
+    constantUsersPerSec (10) during(60 seconds))
+    //rampUsersPerSec (1) to (100) during(1 minute)) //broke API, running from VS
     .protocols(grpcConf))
     //.assertions(global.responseTime.max lt (1000))
 }
