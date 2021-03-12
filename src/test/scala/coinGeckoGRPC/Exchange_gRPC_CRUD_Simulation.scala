@@ -10,16 +10,16 @@ import io.grpc.Status
 import scala.concurrent.duration._
 import _root_.grpc.coingecko.coingecko.DeleteExchangeRequest
 
-class BasicItSimulation extends Simulation {
+class Exchange_gRPC_CRUD_Simulation extends Simulation {
 
   var grpcServerAddr = "localhost"
   var grpcServerPort = 6000
   val grpcConf = grpc(managedChannelBuilder(name = grpcServerAddr, port = grpcServerPort).usePlaintext())
 
   val scn = scenario("CRUD Exchanges")
-    .feed(csv("src/it/scala/coinGeckoExchange/resources/coinGeckoExchangeData.csv").circular)
+    .feed(csv("coinGeckoExchangeData.csv").circular)
     .exec(
-      grpc("Create a new Exchange (Store exchange)")
+      grpc("Store exchange")
        .rpc(ExchangeServiceGrpc.METHOD_STORE_EXCHANGE)
        .payload(StoreExchangeRequest.defaultInstance.updateExpr(
           _.exchange.name :~ $("name"),
@@ -55,8 +55,8 @@ class BasicItSimulation extends Simulation {
     
 
   setUp(scn.inject(
-    constantUsersPerSec (10) during(60 seconds))
-    //rampUsersPerSec (1) to (100) during(1 minute)) //broke API, running from VS
+    nothingFor(4.seconds),
+    constantUsersPerSec (10) during(10 seconds))
     .protocols(grpcConf))
     //.assertions(global.responseTime.max lt (1000))
 }
