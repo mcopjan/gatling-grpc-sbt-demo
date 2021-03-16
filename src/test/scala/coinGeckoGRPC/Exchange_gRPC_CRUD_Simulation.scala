@@ -1,4 +1,4 @@
-import _root_.grpc.coingecko.coingecko.{ExchangeServiceGrpc,StoreExchangeRequest, StoreExchangeResponse, GetExchangeRequest, GetExchangeResponse, Exchange}
+import _root_.grpc.coingecko.coingecko.{ExchangeServiceGrpc,StoreExchangeRequest, StoreExchangeResponse, GetExchangeRequest, GetExchangeResponse,UpdateExchangeRequest, UpdateExchangeResponse, Exchange}
 
 import io.gatling.core.Predef._
 import com.github.phisgr.gatling.grpc.Predef._
@@ -45,18 +45,38 @@ class Exchange_gRPC_CRUD_Simulation extends Simulation {
       .check(statusCode is Status.Code.OK)
     )
     .exec(
+      grpc("Update Exchange")
+      .rpc(ExchangeServiceGrpc.METHOD_UPDATE_EXCHANGE)
+      .payload(UpdateExchangeRequest.defaultInstance.updateExpr(
+          _.exchange.mongoId :~ $("id"),
+          _.exchange.id :~ $("id"),
+          _.exchange.image :~ $("image"),
+          _.exchange.trustScoreRank :~ $("score_rank"),
+          _.exchange.trustScore :~ $("score"),
+          _.exchange.url :~ $("url"),
+          _.exchange.yearEstablished :~ "2020",
+          _.exchange.hasTradingIncentive :~ $("has_trading_incentive"),
+          _.exchange.tradeVolume24HBtcNormalized :~ $("trade_volume_24h_btc_normalized"),
+          _.exchange.country :~ $("country"),
+          _.exchange.name :~ $("name")
+      ))
+      .check(statusCode is Status.Code.OK)
+    )
+    .exec(
       grpc("Delete Exchange")
       .rpc(ExchangeServiceGrpc.METHOD_DELETE_EXCHANGE)
       .payload(DeleteExchangeRequest.defaultInstance.updateExpr(
         _.id :~ $("id")
       ))
       .check(statusCode is Status.Code.OK)
-    )
+    );
+    
+    
     
 
   setUp(scn.inject(
     nothingFor(4.seconds),
     constantUsersPerSec (10) during(10 seconds))
     .protocols(grpcConf))
-    //.assertions(global.responseTime.max lt (1000))
+    //.assertions(global.responseTime.max lt (200))
 }
